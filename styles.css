@@ -353,3 +353,11 @@ section p {
         flex-direction: column;
     }
 }
+.language-selector a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+.language-selector a:hover {
+    text-decoration: underline;
+}
