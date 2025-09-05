@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriLivestock BioSecure 360° - Outbreak Map</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <span class="icon">🌾</span>
+                <h1>AgriLivestock BioSecure 360°</h1>
+            </div>
+            <div class="language-selector">
+                <select>
+                    <option>English</option>
+                    <option>தமிழ்</option>
+                    <option>తెలుగు</option>
+                    <option>മലയാളം</option>
+                    <option>ಕನ್ನಡ</option>
+                </select>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="disease-check.html">Disease Check</a></li>
+                    <li><a href="outbreak-map.html">Outbreak Map</a></li>
+                    <li><a href="farm-records.html">Farm Records</a></li>
+                    <li><a href="hygiene.html">Hygiene</a></li>
+                    <li><a href="buddy-ai.html">Buddy AI</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="outbreak-map">
+        <div class="container">
+            <h2>Outbreak Map 🗺️</h2>
+            <p>Real-time disease outbreak monitoring in your area</p>
+            <div class="map-content">
+                <div class="filters">
+                    <button>All</button>
+                    <button>Animal</button>
+                    <button>Crop</button>
+                    <button>Climate</button>
+                </div>
+                <div class="map">
+                    <div class="risk high">High Risk</div>
+                    <div class="risk medium">Medium Risk</div>
+                    <div class="farm">Your Farm</div>
+                    <div class="legend">
+                        <span class="high">High</span>
+                        <span class="medium">Medium</span>
+                        <span class="low">Low</span>
+                    </div>
+                </div>
+                <div class="alerts">
+                    <h3>Recent Alerts</h3>
+                    <div class="alert">
+                        <span>🚨 High Alert</span>
+                        <p>Foot & Mouth Disease outbreak reported 2.3km away</p>
+                        <small>2 hours ago</small>
+                    </div>
+                    <div class="alert">
+                        <span>⚠️ Medium Alert</span>
+                        <p>Crop blight detected in neighboring farms</p>
+                        <small>6 hours ago</small>
+                    </div>
+                    <div class="alert">
+                        <span>🌧️ Weather Alert</span>
+                        <p>Heavy rainfall expected - secure livestock</p>
+                        <small>1 day ago</small>
+                    </div>
+                    <div class="alert">
+                        <span>✅ All Clear</span>
+                        <p>No active threats in 5km radius</p>
+                        <small>Updated now</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
