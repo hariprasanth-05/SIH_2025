@@ -108,6 +108,16 @@ const resources = {
       feverTreatment: "Fever treatment guide",
       thermometer: "Thermometer usage",
       community: "Community",
+      chatbotWelcome: "Hello! I'm your farming assistant. How can I help you today?",
+      chatbotHello: "Hello! How can I assist you with your farming needs?",
+      chatbotDiseaseHelp: "I can help with disease detection! Upload photos or describe symptoms for AI analysis.",
+      chatbotScanHelp: "Use the daily scan feature to upload photos for AI health analysis of your livestock.",
+      chatbotMapHelp: "Check the outbreak map for real-time disease monitoring in your area.",
+      chatbotRecordHelp: "Keep track of your farm activities in the digital diary - vaccinations, treatments, and more.",
+      chatbotHygieneHelp: "Use the hygiene scanner to assess and improve your farm's cleanliness and sanitation.",
+      chatbotCommunityHelp: "Connect with other farmers in the community to share experiences and get advice.",
+      chatbotDefault: "I'm here to help with farming questions. Try asking about diseases, scanning, records, or hygiene!",
+      chatbotTypeMessage: "Type your message...",
       home: "Home"
     }
   },
@@ -216,7 +226,17 @@ const resources = {
       feverTreatment: "காய்ச்சல் சிகிச்சை வழிகாட்டி",
       thermometer: "தெர்மாமீட்டர் பயன்பாடு",
       home: "முகப்பு",
-      community: "சமூகம்"
+      community: "சமூகம்",
+      chatbotWelcome: "வணக்கம்! நான் உங்கள் விவசாய உதவியாளர். இன்று உங்களுக்கு எப்படி உதவலாம்?",
+      chatbotHello: "வணக்கம்! உங்கள் விவசாய தேவைகளுக்கு எப்படி உதவலாம்?",
+      chatbotDiseaseHelp: "நோய் கண்டறிதலில் உதவலாம்! AI பகுப்பாய்வுக்கு புகைப்படங்களை பதிவேற்றவும் அல்லது அறிகுறிகளை விவரிக்கவும்.",
+      chatbotScanHelp: "தினசரி ஸ்கேன் அம்சத்தைப் பயன்படுத்தி உங்கள் கால்நடையின் AI ஆரோக்ய பகுப்பாய்வுக்கு புகைப்படங்களை பதிவேற்றவும்.",
+      chatbotMapHelp: "உங்கள் பகுதியில் நிகழ்நேர நோய் வெடிப்பு கண்காணிப்புக்கு வெடிப்பு வரைபடத்தை சரிபார்க்கவும்.",
+      chatbotRecordHelp: "டிஜிட்டல் டைரியில் உங்கள் பண்ணை செயல்பாடுகளை கண்காணிக்கவும் - தடுப்பூசி, சிகிச்சை மற்றும் பல.",
+      chatbotHygieneHelp: "உங்கள் பண்ணையின் சுத்திகரிப்பு மற்றும் சுகாதாரத்தை மதிப்பீடு செய்ய மற்றும் மேம்படுத்த ஹைஜீன் ஸ்கேனரைப் பயன்படுத்தவும்.",
+      chatbotCommunityHelp: "அனுபவங்களை பகிர்ந்து கொள்ள மற்றும் ஆலோசனை பெற மற்ற விவசாயிகளுடன் இணைக்கவும்.",
+      chatbotDefault: "விவசாய கேள்விகளில் உதவ நான் இங்கே இருக்கிறேன். நோய், ஸ்கேனிங், பதிவுகள் அல்லது ஹைஜீன் பற்றி கேட்க முயற்சிக்கவும்!",
+      chatbotTypeMessage: "உங்கள் செய்தியை தட்டச்சு செய்யவும்..."
     }
   },
   te: {
@@ -323,6 +343,14 @@ const resources = {
       heatStress: "హీట్ స్ట్రెస్ ప్రివెన్షన్",
       feverTreatment: "ఫీవర్ ట్రీట్మెంట్ గైడ్",
       thermometer: "థర్మామీటర్ యూసేజ్",
+      chatbotDiseaseHelp: "రోగ కనుగొనంలో సహాయం చేయగలను! ఫోటోలను అప్‌లోడ్ చేయండి లేదా లక్షణాలను వివరించండి AI విశ్లేషణ కోసం.",
+      chatbotScanHelp: "రోజువారీ స్కాన్ ఫీచర్‌ను ఉపయోగించండి మీ పశువుల ఆరోగ్యం కోసం ఫోటోలను అప్‌లోడ్ చేయడానికి AI విశ్లేషణ.",
+      chatbotMapHelp: "మీ ప్రాంతంలో రియల్-టైమ్ రోగ వ్యాప్తి మానిటరింగ్ కోసం వ్యాప్తి మ్యాప్‌ను తనిఖీ చేయండి.",
+      chatbotRecordHelp: "డిజిటల్ డైరీలో మీ ఫార్మ్ కార్యకలాపాలను ట్రాక్ చేయండి - వ్యాక్సినేషన్, చికిత్సలు మరియు మరిన్ని.",
+      chatbotHygieneHelp: "మీ ఫార్మ్‌ను మెరుగుపరచడానికి మరియు మీ ఫార్మ్‌ను మెరుగుపరచడానికి హైజీన్ స్కానర్‌ను ఉపయోగించండి.",
+      chatbotCommunityHelp: "అనుభవాలను పంచుకోవడానికి మరియు సలహా పొందడానికి ఇతర కృషికులతో కనెక్ట్ చేయండి.",
+      chatbotDefault: "కృషి ప్రశ్నలలో సహాయం చేయడానికి నేను ఇక్కడ ఉన్నాను. రోగాలు, స్కానింగ్, రికార్డులు లేదా హైజీన్ గురించి అడగడానికి ప్రయత్నించండి!",
+      chatbotTypeMessage: "మీ సందేశాన్ని టైప్ చేయండి...",
       home: "హోమ్",
       community: "కమ్యూనిటీ"
     }

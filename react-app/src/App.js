@@ -10,6 +10,8 @@ import Hygiene from './pages/Hygiene';
 import BuddyAI from './pages/BuddyAI';
 import Community from './pages/Community';
 
+import Chatbot from './components/Chatbot';
+
 function App() {
   return (
     <Router>
@@ -26,6 +28,7 @@ function App() {
             <Route path="/community" element={<Community />} />
           </Routes>
         </main>
+        <Chatbot /> {/* Global floating chatbot component */}
       </div>
     </Router>
   );
