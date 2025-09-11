@@ -108,7 +108,22 @@ const resources = {
       feverTreatment: "Fever treatment guide",
       thermometer: "Thermometer usage",
       community: "Community",
-      home: "Home"
+      home: "Home",
+      diseaseOutbreak: "Disease Outbreak",
+      vaccinationDue: "Vaccination Due",
+      allSystemsNormal: "All Systems Normal",
+      quickActions: "Quick Actions",
+      aiDailyBriefing: "AI Daily Briefing",
+      weatherOutlook: "Weather Outlook",
+      weatherOutlookDesc: "☀️ Clear skies, high of 32°C. No rain expected for 48 hours.",
+      productivityInsight: "Productivity Insight",
+      productivityInsightDesc: "Milk production was 5% above average yesterday. Keep up the good work!",
+      priorityTask: "Priority Task",
+      priorityTaskDesc: "Remember to check Cow #247's recovery from Mastitis treatment.",
+      communityWelcome: "Connect with fellow farmers, ask questions, and share your knowledge.",
+      createNewPost: "Create New Post",
+      upvote: "Upvote",
+      reply: "Reply"
     }
   },
   ta: {
@@ -216,7 +231,22 @@ const resources = {
       feverTreatment: "காய்ச்சல் சிகிச்சை வழிகாட்டி",
       thermometer: "தெர்மாமீட்டர் பயன்பாடு",
       home: "முகப்பு",
-      community: "சமூகம்"
+      community: "சமூகம்",
+      diseaseOutbreak: "நோய் வெடிப்பு",
+      vaccinationDue: "தடுப்பூசி செலுத்த வேண்டிய நாள்",
+      allSystemsNormal: "அனைத்து அமைப்புகளும் இயல்பானவை",
+      quickActions: "விரைவு செயல்பாடுகள்",
+      aiDailyBriefing: "AI தினசரி சுருக்கம்",
+      weatherOutlook: "வானிலை முன்னறிவிப்பு",
+      weatherOutlookDesc: "☀️ தெளிவான வானம், அதிகபட்சம் 32°C. 48 மணி நேரத்திற்கு மழை எதிர்பார்க்கப்படவில்லை.",
+      productivityInsight: "உற்பத்தித்திறன் நுண்ணறிவு",
+      productivityInsightDesc: "நேற்று பால் உற்பத்தி சராசரியை விட 5% அதிகமாக இருந்தது. இந்த நல்ல வேலையைத் தொடருங்கள்!",
+      priorityTask: "முன்னுரிமைப் பணி",
+      priorityTaskDesc: "மாஸ்டிடிஸ் சிகிச்சையிலிருந்து பசு #247 குணமடைவதை சரிபார்க்க நினைவில் கொள்ளுங்கள்.",
+      communityWelcome: "சக விவசாயிகளுடன் இணையுங்கள், கேள்விகளைக் கேளுங்கள், உங்கள் அறிவைப் பகிர்ந்து கொள்ளுங்கள்.",
+      createNewPost: "புதிய இடுகையை உருவாக்கு",
+      upvote: "மேல்வாக்கு",
+      reply: "பதில்"
     }
   },
   te: {
@@ -324,7 +354,22 @@ const resources = {
       feverTreatment: "ఫీవర్ ట్రీట్మెంట్ గైడ్",
       thermometer: "థర్మామీటర్ యూసేజ్",
       home: "హోమ్",
-      community: "కమ్యూనిటీ"
+      community: "కమ్యూనిటీ",
+      diseaseOutbreak: "వ్యాధి వ్యాప్తి",
+      vaccinationDue: "టీకా వేయవలసిన రోజు",
+      allSystemsNormal: "అన్ని వ్యవస్థలు సాధారణంగా ఉన్నాయి",
+      quickActions: "త్వరిత చర్యలు",
+      aiDailyBriefing: "AI రోజువారీ బ్రీఫింగ్",
+      weatherOutlook: "వాతావరణ సూచన",
+      weatherOutlookDesc: "☀️ స్పష్టమైన ఆకాశం, గరిష్టంగా 32°C. 48 గంటల పాటు వర్షం ఊహించబడలేదు.",
+      productivityInsight: "ఉత్పాదకత అంతర్దృష్టి",
+      productivityInsightDesc: "నిన్న పాల ఉత్పత్తి సగటు కంటే 5% ఎక్కువగా ఉంది. మంచి పనిని కొనసాగించండి!",
+      priorityTask: "ప్రాధాన్యతా పని",
+      priorityTaskDesc: "మాస్టిటిస్ చికిత్స నుండి ఆవు #247 కోలుకోవడాన్ని తనిఖీ చేయడం గుర్తుంచుకోండి.",
+      communityWelcome: "తోటి రైతులతో కనెక్ట్ అవ్వండి, ప్రశ్నలు అడగండి మరియు మీ జ్ఞానాన్ని పంచుకోండి.",
+      createNewPost: "కొత్త పోస్ట్‌ను సృష్టించు",
+      upvote: "అప్ ఓటు",
+      reply: "సమాధానం"
     }
   },
   ml: {
@@ -432,7 +477,22 @@ const resources = {
       feverTreatment: "ഫീവർ ട്രീട്ട്മെന്റ് ഗൈഡ്",
       thermometer: "തെർമോമീറ്റർ ഉപയോഗം",
       home: "ഹോം",
-      community: "സമൂഹം"
+      community: "സമൂഹം",
+      diseaseOutbreak: "രോഗവ്യാപനം",
+      vaccinationDue: "വാക്സിനേഷൻ നൽകേണ്ട ദിവസം",
+      allSystemsNormal: "എല്ലാ സിസ്റ്റങ്ങളും സാധാരണമാണ്",
+      quickActions: "വേഗത്തിലുള്ള പ്രവർത്തനങ്ങൾ",
+      aiDailyBriefing: "AI ദൈനംദിന സംഗ്രഹം",
+      weatherOutlook: "കാലാവസ്ഥാ പ്രവചനം",
+      weatherOutlookDesc: "☀️ തെളിഞ്ഞ ആകാശം, ഉയർന്ന താപനില 32°C. 48 മണിക്കൂറിനുള്ളിൽ മഴ പ്രതീക്ഷിക്കുന്നില്ല.",
+      productivityInsight: "ഉത്പാദനക്ഷമത ഉൾക്കാഴ്ച",
+      productivityInsightDesc: "ഇന്നലെ പാൽ ഉത്പാദനം ശരാശരിയേക്കാൾ 5% കൂടുതലായിരുന്നു. ഈ നല്ല പ്രവൃത്തി തുടരുക!",
+      priorityTask: "മുൻഗണനാ ദൗത്യം",
+      priorityTaskDesc: "മാസ്റ്റിറ്റിസ് ചികിത്സയിൽ നിന്ന് പശു #247 സുഖം പ്രാപിക്കുന്നത് പരിശോധിക്കാൻ ഓർമ്മിക്കുക.",
+      communityWelcome: "സഹ കർഷകരുമായി ബന്ധപ്പെടുക, ചോദ്യങ്ങൾ ചോദിക്കുക, നിങ്ങളുടെ അറിവ് പങ്കിടുക.",
+      createNewPost: "പുതിയ പോസ്റ്റ് സൃഷ്ടിക്കുക",
+      upvote: "അപ്‌വോട്ട്",
+      reply: "മറുപടി"
     }
   },
   kn: {
@@ -540,7 +600,22 @@ const resources = {
       feverTreatment: "ಜ್ವರ ಚಿಕಿತ್ಸೆ ಮಾರ್ಗದರ್ಶಿ",
       thermometer: "ಥರ್ಮಾಮೀಟರ್ ಬಳಕೆ",
       home: "ಮುಖಪುಟ",
-      community: "ಸಮುದಾಯ"
+      community: "ಸಮುದಾಯ",
+      diseaseOutbreak: "ರೋಗ ಹರಡುವಿಕೆ",
+      vaccinationDue: "ಲಸಿಕೆ ಹಾಕಬೇಕಾದ ದಿನ",
+      allSystemsNormal: "ಎಲ್ಲಾ ವ್ಯವಸ್ಥೆಗಳು ಸಾಮಾನ್ಯವಾಗಿದೆ",
+      quickActions: "ತ್ವರಿತ ಕ್ರಮಗಳು",
+      aiDailyBriefing: "AI ದೈನಂದಿನ ಸಂಕ್ಷಿಪ್ತ",
+      weatherOutlook: "ಹವಾಮಾನ ಮುನ್ಸೂಚನೆ",
+      weatherOutlookDesc: "☀️ ಸ್ಪಷ್ಟ ಆಕಾಶ, ಗರಿಷ್ಠ 32°C. 48 ಗಂಟೆಗಳ ಕಾಲ ಮಳೆ ನಿರೀಕ್ಷಿಸಲಾಗುವುದಿಲ್ಲ.",
+      productivityInsight: "ಉತ್ಪಾದಕತೆ ಒಳನೋಟ",
+      productivityInsightDesc: "ನಿನ್ನೆ ಹಾಲಿನ ಉತ್ಪಾದನೆ ಸರಾಸರಿಗಿಂತ 5% ಹೆಚ್ಚಾಗಿತ್ತು. ಈ ಉತ್ತಮ ಕೆಲಸವನ್ನು ಮುಂದುವರಿಸಿ!",
+      priorityTask: "ಆದ್ಯತೆಯ ಕಾರ್ಯ",
+      priorityTaskDesc: "ಮಾಸ್ಟಿಟಿಸ್ ಚಿಕಿತ್ಸೆಯಿಂದ ಹಸು #247 ಚೇತರಿಸಿಕೊಳ್ಳುವುದನ್ನು ಪರೀಕ್ಷಿಸಲು ನೆನಪಿಡಿ.",
+      communityWelcome: "ಸಹ ರೈತರೊಂದಿಗೆ ಸಂಪರ್ಕ ಸಾಧಿಸಿ, ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳಿ ಮತ್ತು ನಿಮ್ಮ ಜ್ಞಾನವನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.",
+      createNewPost: "ಹೊಸ ಪೋಸ್ಟ್ ರಚಿಸಿ",
+      upvote: "ಅಪ್‌ವೋಟ್",
+      reply: "ಪ್ರತ್ಯುತ್ತರ"
     }
   }
 };

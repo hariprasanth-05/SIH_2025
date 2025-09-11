@@ -1,320 +1,956 @@
-/* src/styles.css */
+/*
+=================================================================
+  PASHURAKSHAK - FINAL & COMPLETE STYLESHEET
+=================================================================
+  - Description: The complete, professional, and agri-themed UI
+    including all fixes for mobile navigation, custom dropdowns,
+    and responsive layouts.
+=================================================================
+*/
+
+/* 1. ROOT & GLOBAL STYLES ====================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  /* Agri-Biosecurity Color Palette */
+  --primary-agri-green: #388E3C;
+  --dark-agri-green: #2E7D32;
+  --light-agri-green: #66BB6A;
+  --earth-brown: #795548;
+  --soil-grey: #424242;
+  --neutral-bg-light: #F5F5F5;
+  --neutral-bg-dark: #ECEFF1;
+  --text-dark: #212121;
+  --text-light: #FFFFFF;
+  --border-subtle: rgba(0, 0, 0, 0.1);
+
+  /* System Colors */
+  --color-success: #4CAF50;
+  --color-warning: #FFC107;
+  --color-danger: #F44336;
+
+  /* UI Properties */
+  --border-radius-card: 16px;
+  --border-radius-sm: 8px;
+  --shadow-flat: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lift: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --transition-fast: 0.2s ease-out;
+  --transition-med: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Thematic Gradients */
+  --gradient-green: linear-gradient(135deg, var(--light-agri-green) 0%, var(--primary-agri-green) 100%);
+  --gradient-button: linear-gradient(45deg, var(--light-agri-green) 0%, var(--dark-agri-green) 100%);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f5f5f5;
-  color: #333;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--neutral-bg-light);
+  color: var(--text-dark);
   line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
-/* Header Styling */
+/* Custom Scrollbar */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background: var(--neutral-bg-light);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--primary-agri-green);
+  border-radius: 10px;
+}
+
+/* Find and replace this rule in your styles.css */
+
+/* Immersive Thematic Background Image */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Puts the background behind all content */
+  pointer-events: none;
+  background: 
+  linear-gradient(rgba(245, 245, 245, 0.65), rgba(245, 245, 245, 0.65)), 
+  url('images/bg.png'); 
+
+  background-size: cover; /* Stretches the image to cover the screen */
+  background-position: center center; /* Keeps the image centered */
+  background-repeat: no-repeat;
+}
+
+/* 2. TYPOGRAPHY & HEADINGS ===================================== */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  color: var(--dark-agri-green);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); text-shadow: 1px 1px 5px rgba(0,0,0,0.1); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.3rem, 3vw, 1.8rem); }
+
+p {
+  margin-bottom: 1rem;
+  color: var(--soil-grey);
+  font-family: 'Lato', sans-serif;
+}
+
+a {
+  color: var(--primary-agri-green);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--dark-agri-green);
+}
+
+/* 3. HEADER & NAVIGATION SYSTEM ================================ */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #2e7d32; /* Dark green for farming theme */
-  color: white;
+  padding: 1rem clamp(1.5rem, 5vw, 4rem);
+  background-color: var(--dark-agri-green);
+  color: var(--text-light);
+  box-shadow: var(--shadow-flat);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.language-selector {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.language-selector a {
-  color: white;
-  text-decoration: none;
-  padding: 0.2rem 0.5rem;
-  transition: background-color 0.3s;
-}
-
-.language-selector a.active {
-  background-color: #1b5e20; /* Darker green for active language */
-  border-radius: 3px;
-}
-
-.language-selector a:hover {
-  background-color: #388e3c; /* Lighter green on hover */
-}
-
-.hamburger {
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: none; /* Hidden on desktop */
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.5px;
 }
 
 .nav-links {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1.8rem;
   list-style: none;
 }
 
 .nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.3s;
+  font-weight: 500;
+  color: var(--neutral-bg-light);
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .nav-links a:hover {
-  color: #c8e6c9; /* Light green hover effect */
+  color: var(--text-light);
+  transform: translateY(-2px);
 }
 
-/* Mobile Menu */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: #2e7d32;
-    flex-direction: column;
-    padding: 1rem;
-    text-align: center;
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .language-selector {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-  }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--light-agri-green);
+  transition: width var(--transition-fast) ease-in-out;
+}
+.nav-links a:hover::after {
+  width: 100%;
 }
 
-/* General Section Styling */
-section {
+/* 4. CUSTOM LANGUAGE DROPDOWN =================================== */
+.custom-dropdown {
+  position: relative;
+  width: 120px;
+  font-size: 0.9rem;
+}
+
+.dropdown-selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border-radius: var(--border-radius-sm);
+  background: var(--light-agri-green);
+  border: 1px solid var(--primary-agri-green);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.custom-dropdown:hover .dropdown-selected {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3);
+}
+
+.dropdown-selected::after {
+  content: '▼';
+  font-size: 0.6rem;
+  transition: transform var(--transition-fast);
+}
+.custom-dropdown.open .dropdown-selected::after {
+  transform: rotate(180deg);
+}
+
+.dropdown-options {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background: var(--dark-agri-green);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--light-agri-green);
+  box-shadow: var(--shadow-lift);
+  overflow: hidden;
+  z-index: 1001;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.custom-dropdown.open .dropdown-options {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-option {
+  padding: 0.75rem 1rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+.dropdown-option:hover {
+  background-color: var(--primary-agri-green);
+}
+
+/* 5. PRO CARD COMPONENT ======================================== */
+.card {
+  background-color: var(--neutral-bg-dark);
   padding: 2rem;
+  border-radius: var(--border-radius-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-flat);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-med), box-shadow var(--transition-med);
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: var(--gradient-green);
+  border-top-left-radius: var(--border-radius-card);
+  border-top-right-radius: var(--border-radius-card);
+}
+
+/* 6. ADVANCED BUTTON SYSTEM ===================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background: var(--gradient-button);
+  color: var(--text-light);
+  box-shadow: var(--shadow-flat);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-secondary {
+  background-color: var(--neutral-bg-dark);
+  color: var(--primary-agri-green);
+  border: 1px solid var(--primary-agri-green);
+}
+.btn-secondary:hover {
+  background-color: var(--primary-agri-green);
+  color: var(--text-light);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.8s ease-out;
+  pointer-events: none;
+}
+.btn:hover::after {
+  left: 120%;
+}
+
+/* 7. PAGE-SPECIFIC & UTILITY =================================== */
+section {
+  padding: clamp(2.5rem, 8vw, 5rem) clamp(1.5rem, 5vw, 4rem);
   max-width: 1200px;
   margin: 0 auto;
 }
 
-h1 {
-  color: #2e7d32;
-  margin-bottom: 1rem;
+.card-grid, .alert-list {
+  --stagger-delay: 100ms;
+}
+.card-grid .card, .alert-list li {
+  opacity: 0;
+  animation: fadeInFromBottom 0.6s ease-out forwards;
+  animation-delay: calc(var(--stagger-index) * var(--stagger-delay));
 }
 
-p {
-  margin-bottom: 1rem;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
-/* Button Styling */
-button {
-  background-color: #388e3c;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.alert-list {
+  list-style: none;
+  padding: 0;
+}
+.alert-list li {
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: var(--text-dark);
 }
 
-button:hover {
-  background-color: #1b5e20;
-}
-
-/* Home Page Specific */
-.digital-twin, .daily-scan, .active-alerts {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-}
-
-.digital-twin h2, .daily-scan h2, .active-alerts h2 {
-  color: #2e7d32;
-  margin-bottom: 0.5rem;
-}
-
-/* OutbreakMap Specific */
 #map {
   width: 100%;
-  border-radius: 8px;
+  height: 500px;
+  border-radius: var(--border-radius-card);
   overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-flat);
 }
 
-.filters {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
+.form-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--neutral-bg-light);
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-agri-green);
+  box-shadow: 0 0 0 2px rgba(56, 142, 60, 0.2);
 }
 
-.recent-alerts ul {
-  list-style: none;
+/* 8. ANIMATIONS & KEYFRAMES ==================================== */
+@keyframes fadeInFromBottom {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.recent-alerts li {
-  background-color: white;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+@keyframes backgroundPan {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
 }
 
-/* DiseaseCheck and Other Pages */
-.upload-media, .ai-diagnosis {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-}
-
-.upload-media div {
-  margin-bottom: 1rem;
-}
-
-/* General List Styling */
-ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-ul li {
-  margin-bottom: 0.5rem;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 600px) {
-  section {
-    padding: 1rem;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  button {
+}
+
+/* 9. MOBILE RESPONSIVE DESIGN ========================================= */
+@media (max-width: 992px) {
+  .nav-links {
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem 1.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    position: relative;
+  }
+  .hamburger .bar {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-light);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 100%;
     width: 100%;
-    margin-bottom: 0.5rem;
+    height: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--dark-agri-green);
+    transition: left 0.4s ease-in-out;
+    padding: 0;
+  }
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-links li {
+    width: 80%;
+    text-align: center;
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    opacity: 0;
+    animation: fadeInFromBottom 0.5s ease-out forwards;
+    animation-delay: calc(var(--stagger-index) * 100ms + 200ms);
+  }
+
+  .custom-dropdown {
+    width: 100px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
   }
 }
-/* src/styles.css (partial update for navigation) */
 
-/* Header Styling */
-header {
+/* Add to the end of your styles.css */
+
+/* --- Mobile Nav Layout Fixes --- */
+
+/* Hide the mobile language selector on desktop */
+.mobile-lang {
+  display: none;
+}
+
+/* --- Rules for Mobile View --- */
+@media (max-width: 768px) {
+  /* Hide the desktop language selector on mobile */
+  .desktop-lang {
+    display: none;
+  }
+
+  /* Show and style the mobile language selector */
+  .mobile-lang {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    border-bottom: none; /* Remove separator line */
+    width: auto; /* Allow it to size naturally */
+  }
+
+  /* Reposition the active hamburger (the 'X' close button) */
+  .hamburger.active {
+    position: fixed; /* Position relative to the viewport */
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1003; /* Ensure it's above the menu */
+  }
+
+  /* Add padding to the nav menu to create space at the top */
+  .nav-links.active {
+    padding-top: 5rem;
+  }
+}
+/* Add to the end of your styles.css */
+
+/* 10. FARM RECORDS PAGE ENHANCEMENTS */
+.records-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #2e7d32; /* Dark green farming theme */
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 1px; /* Cleaner look */
+.search-bar {
+  width: 100%;
+  max-width: 350px;
 }
 
-.language-selector {
-  display: flex;
-  gap: 0.5rem;
+.filter-buttons .btn-secondary {
+  margin-left: 0.5rem;
 }
 
-.language-selector a {
-  color: white;
-  text-decoration: none;
-  padding: 0.3rem 0.7rem;
-  border-radius: 3px;
-  transition: background-color 0.3s, color 0.3s;
+.animal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.animal-card {
+  background-color: var(--neutral-bg-dark);
+  border-radius: var(--border-radius-card);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-flat);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.animal-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: var(--shadow-lift);
+}
+
+.animal-card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.animal-card-info {
+  padding: 1rem;
+  position: relative;
+}
+
+.animal-card-info h4 {
+  color: var(--dark-agri-green);
+  margin-bottom: 0.25rem;
+}
+
+.animal-card-info p {
   font-size: 0.9rem;
+  color: var(--soil-grey);
+  margin-bottom: 0;
 }
 
-.language-selector a.active {
-  background-color: #1b5e20; /* Darker green for active language */
-}
-
-.language-selector a:hover {
-  background-color: #388e3c; /* Lighter green on hover */
+.status-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: #fff;
 }
+.status-healthy { background-color: var(--color-success); }
+.status-due { background-color: var(--color-warning); color: var(--text-dark); }
+.status-attention { background-color: var(--color-danger); }
 
-/* Hamburger Menu */
-.hamburger {
-  font-size: 1.8rem; /* Slightly larger for better tap target */
-  cursor: pointer;
-  display: none; /* Hidden on desktop */
-  color: #c8e6c9; /* Light green for contrast */
-}
 
-.hamburger.toggle {
-  color: #fff; /* Highlight when active */
-}
-
-/* Navigation Links */
-.nav-links {
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(5px);
+  animation: fadeInFromBottom 0.3s ease;
+}
+
+.modal-content {
+  background-color: var(--neutral-bg-light);
+  padding: 2rem;
+  border-radius: var(--border-radius-card);
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lift);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+}
+.tab-btn.active {
+  color: var(--primary-agri-green);
+  border-bottom-color: var(--primary-agri-green);
+}
+
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.record-table th, .record-table td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.record-table th {
+  background-color: var(--neutral-bg-dark);
+}
+
+/* Add to the end of your styles.css */
+
+/* 11. DIGITAL TWIN DASHBOARD STYLING */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dashboard-section {
+  background-color: var(--neutral-bg-dark);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.dashboard-section h4 {
+  border-bottom: 2px solid var(--primary-agri-green);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-family: 'Lato', sans-serif;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #ccc;
+  border-radius: 5px;
+  height: 10px;
+  margin-top: 4px;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  background: var(--gradient-green);
+  border-radius: 5px;
+}
+/* Add to the end of your styles.css */
+
+/* 12. OUTBREAK MAP ENHANCEMENTS */
+.filter-buttons .btn-secondary.active {
+  background-color: var(--primary-agri-green);
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.risk-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.risk-high { background-color: var(--color-danger); }
+.risk-medium { background-color: var(--color-warning); }
+.risk-low { background-color: var(--text-dark); }
+
+/* Add to the end of your styles.css */
+
+/* 13. HYGIENE PAGE ENHANCEMENTS */
+
+.recommendation-list li {
+  background-color: var(--neutral-bg-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500; /* Medium weight for clarity */
-  padding: 0.4rem 0.8rem; /* Padding for better click area */
-  border-radius: 4px; /* Soft corners */
-  transition: background-color 0.3s, color 0.3s;
+.recommendation-list li:hover {
+  background-color: #fff;
+  transform: scale(1.02);
 }
 
-.nav-links a:hover {
-  background-color: #388e3c; /* Lighter green background on hover */
-  color: #fff;
+.instruction-steps {
+  list-style-type: decimal;
+  padding-left: 20px;
 }
 
-/* Mobile Menu */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background-color: #2e7d32;
-    flex-direction: column;
-    padding: 1.5rem;
-    text-align: center;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  .nav-links.active {
-    display: flex;
-  }
-  .nav-links a {
-    padding: 0.8rem 1.2rem; /* Larger padding for mobile taps */
-    font-size: 1.2rem; /* Larger text for readability */
-  }
-  .language-selector {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
+.instruction-steps li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
 }
 
-/* Ensure full stylesheet includes other sections (e.g., section, buttons) */
+/* Add to the end of your styles.css */
+
+/* 14. SIMULATED VET CHAT STYLING */
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--neutral-bg-dark);
+  border-radius: var(--border-radius-sm);
+}
+
+.chat-message {
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.chat-message.user {
+  background-color: var(--primary-agri-green);
+  color: var(--text-light);
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.chat-message.vet {
+  background-color: #fff;
+  color: var(--text-dark);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-style: italic;
+  color: var(--soil-grey);
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--soil-grey);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+.typing-indicator span:nth-of-type(1) { animation-delay: -0.32s; }
+.typing-indicator span:nth-of-type(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1.0); }
+}
+/* Add to the end of your styles.css */
+/* Find and replace this entire section in your styles.css */
+
+/* 15. BUDDY AI CHAT INTERFACE (CORRECTED) */
+.chat-window-ai {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* Reduced gap between messages */
+  height: 350px;
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: var(--neutral-bg-dark);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 1rem;
+}
+
+.chat-message-ai {
+  padding: 0.75rem 1rem;
+  border-radius: 18px; /* More rounded bubbles */
+  max-width: 80%;
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeInFromBottom 0.3s ease forwards;
+}
+
+/* AI's messages (received) */
+.chat-message-ai.ai {
+  background-color: #fff;
+  color: var(--text-dark);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+/* User's messages (sent) */
+.chat-message-ai.user {
+  background-color: var(--dark-agri-green);
+  color: var(--text-light);
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+/* Input form layout */
+.chat-input-form {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  gap: 0.75rem;
+}
+
+.chat-input-form input {
+  flex-grow: 1; /* Make the input field take up all available space */
+}
+
+/* Microphone button styling */
+.chat-input-form .btn-icon {
+  width: 44px; /* Standard icon button size */
+  height: 44px;
+  padding: 0;
+  font-size: 1.2rem;
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+/* Send button styling */
+.chat-input-form .btn-primary {
+  flex-shrink: 0; /* Prevent the button from shrinking */
+}
+
+/* Listening animation */
+.chat-input-form .btn-icon.listening {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 142, 60, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(56, 142, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 142, 60, 0);
+  }
+}
+/* 16. AI VOICE INTERACTION STYLES */
+.chat-input-form .btn-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.chat-input-form .btn-icon.listening {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(56, 142, 60, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(56, 142, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(56, 142, 60, 0);
+  }
+}
