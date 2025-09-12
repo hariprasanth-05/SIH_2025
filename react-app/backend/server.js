@@ -7,18 +7,30 @@ const cors = require('cors');
 dotenv.config();
 
 const app = express();
-const port = 3001; // We'll run the backend on a different port
+const port = 3001;
 
-app.use(cors()); // Allow requests from your React app
+app.use(cors());
 app.use(express.json());
 
-// Initialize the Google Generative AI client
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Define the endpoint for chat
+// A simple map to convert language codes to full names for the AI prompt
+const languageMap = {
+  en: 'English',
+  hi: 'Hindi',
+  mr: 'Marathi',
+  or: 'Odia',
+  ta: 'Tamil',
+  te: 'Telugu',
+  kn: 'Kannada',
+  ml: 'Malayalam',
+};
+
 app.post('/chat', async (req, res) => {
   try {
-    const { message } = req.body;
+    // Now we receive the message AND the language
+    const { message, language } = req.body;
+    const languageName = languageMap[language] || 'English'; // Default to English if language is unknown
 
     if (!message) {
       return res.status(400).send({ error: 'Message is required' });
@@ -26,16 +38,16 @@ app.post('/chat', async (req, res) => {
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
-    // This is the "prompt engineering" part. We give the AI its personality.
+    // We updated the prompt to be language-aware
     const chat = model.startChat({
       history: [
         {
           role: "user",
-          parts: [{ text: "You are 'Pashurakshak', a helpful and expert AI assistant for Indian farmers. Your expertise is in agriculture, biosecurity, livestock (cattle, poultry, pigs), and crops relevant to India. Provide concise, practical, and easy-to-understand advice. Always be supportive and encouraging." }],
+          parts: [{ text: `You are 'Pashurakshak', an expert AI assistant for Indian farmers. Your expertise is in agriculture, biosecurity, livestock (cattle, poultry, pigs), and crops relevant to India. You MUST respond ONLY in the ${languageName} language. Provide concise, practical, and easy-to-understand advice.` }],
         },
         {
           role: "model",
-          parts: [{ text: "Namaste! I am Pashurakshak, your dedicated farming assistant. How can I help you and your farm today?" }],
+          parts: [{ text: "Acknowledged. I will now exclusively respond in " + languageName }],
         },
       ],
       generationConfig: {

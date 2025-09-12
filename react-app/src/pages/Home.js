@@ -2,55 +2,61 @@
 
 import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const mockScanResults = [
-  { disease: "No disease detected", confidence: "98%", recommendation: "Animal appears healthy. Continue routine monitoring." },
-  { disease: "Early signs of Mastitis", confidence: "75%", recommendation: "Isolate and consult a veterinarian immediately for confirmation." },
-  { disease: "Possible Nutritional Deficiency", confidence: "60%", recommendation: "Review feed composition. Consider mineral supplements." },
-  { disease: "Signs of Bovine Respiratory Disease (BRD)", confidence: "82%", recommendation: "High risk. Separate from herd and seek immediate veterinary care." },
+  { disease: "Scan inconclusive", confidence: "N/A", recommendation: "Image quality is too low for an accurate analysis. Please upload a clear, well-lit photo of the animal from the side." },
+  { disease: "No critical threats detected", confidence: "95%", recommendation: "The animal shows no obvious signs of major disease from this scan. Continue with routine monitoring of behavior and appetite." },
+  { disease: "Potential signs of Bovine Respiratory Disease (BRD)", confidence: "70%", recommendation: "Subtle indicators like nasal discharge and lethargy are present. Observe breathing patterns closely and isolate if symptoms worsen. Consult a vet." },
+  { disease: "Pattern match for early-stage Mastitis", confidence: "80%", recommendation: "Analysis suggests possible inflammation of the udder. A physical check is highly recommended. Consult a veterinarian for confirmation." },
 ];
 
 const Home = () => {
   const { t } = useTranslation();
-
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState(null);
   const [uploadedImage, setUploadedImage] = useState(null);
   const fileInputRef = useRef(null);
-
   const [isTwinModalOpen, setIsTwinModalOpen] = useState(false);
 
-  const handleScanClick = () => {
-    fileInputRef.current.click();
-  };
+  const handleScanClick = () => { fileInputRef.current.click(); };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (!file) return;
-
+    
+    const fileName = file.name.toLowerCase();
     setUploadedImage(URL.createObjectURL(file));
     setIsScanning(true);
     setScanResult(null);
 
     setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * mockScanResults.length);
-      const randomResult = mockScanResults[randomIndex];
-      setScanResult(randomResult);
+      // --- NEW LOGIC: Check filename for keywords ---
+      if (fileName.includes('water') || fileName.includes('stagnant') || fileName.includes('puddle')) {
+        // If a keyword is found, give a guidance message instead of a diagnosis
+        setScanResult({
+          disease: "Environmental Scan Detected",
+          confidence: "N/A",
+          recommendation: "This image appears to show a potential hygiene risk (stagnant water). For environmental analysis, please use the Hygiene & Sanitation Scanner.",
+          isGuidance: true // Flag to show the correct button
+        });
+      } else {
+        // Otherwise, pick a random animal diagnosis
+        const randomIndex = Math.floor(Math.random() * mockScanResults.length);
+        setScanResult(mockScanResults[randomIndex]);
+      }
       setIsScanning(false);
     }, 3000);
   };
-
-  // --- DIGITAL TWIN MODAL COMPONENT (NOW WITH ENVIRONMENTAL DATA) ---
+  
   const DigitalTwinModal = ({ onClose }) => {
     const [envData, setEnvData] = useState({ temp: 31, humidity: 75 });
-
     const refreshEnvData = () => {
       setEnvData({
         temp: Math.floor(Math.random() * (35 - 28 + 1) + 28),
         humidity: Math.floor(Math.random() * (85 - 65 + 1) + 65),
       });
     };
-
     return (
       <div className="modal-overlay" onClick={onClose}>
         <div className="modal-content" onClick={e => e.stopPropagation()}>
@@ -75,7 +81,6 @@ const Home = () => {
                 <div className="stat-item"><span>Predicted Yield:</span> <strong>+5% vs. Avg</strong></div>
               </div>
             </div>
-            {/* New Environmental Data Section */}
             <div className="dashboard-section" style={{marginTop: '1.5rem'}}>
                 <h4>Environmental Data <button className="btn btn-secondary" style={{padding: '0.2rem 0.8rem', fontSize: '0.8rem'}} onClick={refreshEnvData}>Refresh</button></h4>
                 <div className="stat-item"><span>🌡️ Temperature:</span> <strong>{envData.temp}°C</strong></div>
@@ -86,15 +91,13 @@ const Home = () => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <section>
       <h1>{t('welcome')}</h1>
       <p>{t('monitor')}</p>
-
       <div className="card-grid">
-        {/* Card 1: Digital Twin */}
         <div className="card" style={{ '--stagger-index': 1 }}>
           <h3>{t('digitalTwin')}</h3>
           <p>{t('realTime')}</p>
@@ -104,8 +107,6 @@ const Home = () => {
           </ul>
           <button className="btn btn-primary" onClick={() => setIsTwinModalOpen(true)}>{t('viewDetails')}</button>
         </div>
-
-        {/* Card 2: Daily Scan */}
         <div className="card" style={{ '--stagger-index': 2 }}>
           <h3>{t('dailyScan')}</h3>
           <input type="file" accept="image/*" ref={fileInputRef} onChange={handleImageUpload} style={{ display: 'none' }} />
@@ -120,14 +121,17 @@ const Home = () => {
           {scanResult && (
             <div>
               <h4>Scan Complete!</h4>
-              <p><strong>Diagnosis:</strong> {scanResult.disease} ({scanResult.confidence} confidence)</p>
+              <p><strong>Analysis:</strong> {scanResult.disease} {scanResult.confidence !== 'N/A' && `(${scanResult.confidence} confidence)`}</p>
               <p><strong>Action:</strong> {scanResult.recommendation}</p>
-              <button className="btn btn-secondary" onClick={() => { setScanResult(null); setUploadedImage(null); }}>Scan Another</button>
+              {/* --- NEW LOGIC: Show a different button for the guidance message --- */}
+              {scanResult.isGuidance ? (
+                <Link to="/hygiene" className="btn btn-primary">Go to Hygiene Scanner</Link>
+              ) : (
+                <button className="btn btn-secondary" onClick={() => { setScanResult(null); setUploadedImage(null); }}>Scan Another</button>
+              )}
             </div>
           )}
         </div>
-
-        {/* Card 3: Active Alerts */}
         <div className="card" style={{ '--stagger-index': 3 }}>
           <h3>{t('activeAlerts')}</h3>
           <ul className="alert-list">
@@ -137,8 +141,6 @@ const Home = () => {
           </ul>
         </div>
       </div>
-
-      {/* Conditionally render the Digital Twin Modal */}
       {isTwinModalOpen && <DigitalTwinModal onClose={() => setIsTwinModalOpen(false)} />}
     </section>
   );

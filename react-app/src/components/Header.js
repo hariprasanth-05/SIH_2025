@@ -1,14 +1,13 @@
 // src/components/Header.js
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import logoImage from '../images/logo.png'; // Correctly import the logo
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [navActive, setNavActive] = useState(false);
-  
-  // Separate state and refs for each dropdown to prevent conflicts
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   const desktopDropdownRef = useRef(null);
@@ -20,11 +19,13 @@ const Header = () => {
     { code: 'te', name: 'తెలుగు' },
     { code: 'ml', name: 'മലയാളം' },
     { code: 'kn', name: 'ಕನ್ನಡ' },
+    { code: 'hi', name: 'हिन्दी' },
+  { code: 'mr', name: 'मराठी' },
+  { code: 'or', name: 'ଓଡ଼ିଆ' }
   ];
 
   const currentLang = languages.find(lang => lang.code === i18n.language);
 
-  // Hook to close desktop dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (desktopDropdownRef.current && !desktopDropdownRef.current.contains(event.target)) {
@@ -35,7 +36,6 @@ const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [desktopDropdownRef]);
 
-  // Hook to close mobile dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(event.target)) {
@@ -55,56 +55,50 @@ const Header = () => {
   const toggleNav = () => setNavActive(!navActive);
   const closeNav = () => setNavActive(false);
 
+  const LanguageDropdown = ({ mobile = false }) => {
+    const ref = mobile ? mobileDropdownRef : desktopDropdownRef;
+    const isOpen = mobile ? mobileDropdownOpen : desktopDropdownOpen;
+    const setOpen = mobile ? setMobileDropdownOpen : setDesktopDropdownOpen;
+
+    return (
+      <div ref={ref} className={`custom-dropdown ${isOpen ? 'open' : ''}`}>
+        <div className="dropdown-selected" onClick={() => setOpen(!isOpen)}>
+          {currentLang?.name || 'English'}
+        </div>
+        <div className="dropdown-options">
+          {languages.map(lang => (
+            <div key={lang.code} className="dropdown-option" onClick={() => changeLanguage(lang.code)}>
+              {lang.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <header>
-      <Link to="/" className="logo" onClick={closeNav}>PASHURAKSHAK</Link>
+      {/* Logo now includes both the image and the text */}
+      <Link to="/" className="logo" onClick={closeNav}>
+        <img src={logoImage} alt="Pashurakshak Logo" />
+        <span>PASHURAKSHAK</span>
+      </Link>
       
-      <nav>
+      <nav className="main-nav">
         <ul className={`nav-links ${navActive ? 'active' : ''}`}>
-          {/* Mobile-only Language Selector */}
-          <li className="mobile-lang">
-            <div ref={mobileDropdownRef} className={`custom-dropdown ${mobileDropdownOpen ? 'open' : ''}`}>
-              <div className="dropdown-selected" onClick={() => setMobileDropdownOpen(!mobileDropdownOpen)}>
-                {currentLang?.name || 'English'}
-              </div>
-              <div className="dropdown-options">
-                {languages.map(lang => (
-                  <div key={lang.code} className="dropdown-option" onClick={() => changeLanguage(lang.code)}>
-                    {lang.name}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </li>
-          
-          {/* Navigation Links */}
-          <li style={{'--stagger-index': 1}}><Link to="/" onClick={closeNav}>{t('home')}</Link></li>
-          <li style={{'--stagger-index': 2}}><Link to="/disease-check" onClick={closeNav}>{t('diseaseCheck')}</Link></li>
-          <li style={{'--stagger-index': 3}}><Link to="/outbreak-map" onClick={closeNav}>{t('outbreakMap')}</Link></li>
-          <li style={{'--stagger-index': 4}}><Link to="/farm-records" onClick={closeNav}>{t('farmRecords')}</Link></li>
-          <li style={{'--stagger-index': 5}}><Link to="/hygiene" onClick={closeNav}>{t('hygiene')}</Link></li>
-          <li style={{'--stagger-index': 6}}><Link to="/buddy-ai" onClick={closeNav}>{t('buddyAI')}</Link></li>
-          <li style={{'--stagger-index': 7}}><Link to="/community" onClick={closeNav}>{t('community')}</Link></li>
+          <li className="mobile-lang"><LanguageDropdown mobile={true} /></li>
+          <li style={{'--stagger-index': 1}}><NavLink to="/" onClick={closeNav} end>{t('home')}</NavLink></li>
+          <li style={{'--stagger-index': 2}}><NavLink to="/disease-check" onClick={closeNav}>{t('diseaseCheck')}</NavLink></li>
+          <li style={{'--stagger-index': 3}}><NavLink to="/outbreak-map" onClick={closeNav}>{t('outbreakMap')}</NavLink></li>
+          <li style={{'--stagger-index': 4}}><NavLink to="/farm-records" onClick={closeNav}>{t('farmRecords')}</NavLink></li>
+          <li style={{'--stagger-index': 5}}><NavLink to="/hygiene" onClick={closeNav}>{t('hygiene')}</NavLink></li>
+          <li style={{'--stagger-index': 6}}><NavLink to="/buddy-ai" onClick={closeNav}>{t('buddyAI')}</NavLink></li>
+          <li style={{'--stagger-index': 7}}><NavLink to="/community" onClick={closeNav}>{t('community')}</NavLink></li>
         </ul>
       </nav>
 
-      <div className="header-controls" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-        {/* Desktop-only Language Selector */}
-        <div className="desktop-lang">
-          <div ref={desktopDropdownRef} className={`custom-dropdown ${desktopDropdownOpen ? 'open' : ''}`}>
-            <div className="dropdown-selected" onClick={() => setDesktopDropdownOpen(!desktopDropdownOpen)}>
-              {currentLang?.name || 'English'}
-            </div>
-            <div className="dropdown-options">
-              {languages.map(lang => (
-                <div key={lang.code} className="dropdown-option" onClick={() => changeLanguage(lang.code)}>
-                  {lang.name}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
+      <div className="header-controls">
+        <div className="desktop-lang"><LanguageDropdown /></div>
         <button className={`hamburger ${navActive ? 'active' : ''}`} onClick={toggleNav} aria-label="Toggle navigation">
           <div className="bar"></div>
           <div className="bar"></div>
